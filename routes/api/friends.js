@@ -1,9 +1,12 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const friendsController = require('../../controllers/friendsController');
 
-const friendsSchema = new mongoose.Schema({
-    //friends schema
-});
+// POST a new friend to a user's friend list
+router.post('/:userId/friends/:friendId', friendsController.addFriend);
 
-const Friends = mongoose.model('Friends', friendsSchema);
+// DELETE a friend from a user's friend list
+router.delete('/:userId/friends/:friendId', friendsController.removeFriend);
 
-module.exports = Friends;
+module.exports = router;
+

@@ -1,12 +1,21 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const usersController = require('../../controllers/usersController');
 
-const userSchema = new mongoose.Schema({
-    //users schema
-});
+// Create a new user
+router.post('/', usersController.createUser);
 
-const User = mongoose.model('User', userSchema);
+// Get all users
+router.get('/', usersController.getAllUsers);
 
-module.exports = User;
+// Update a user by ID
+router.put('/:userId', usersController.updateUser);
+
+// Delete a user by ID
+router.delete('/:userId', usersController.deleteUser);
+
+module.exports = router;
+
 
 
 

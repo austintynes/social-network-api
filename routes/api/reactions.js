@@ -1,9 +1,11 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const reactionsController = require('../../controllers/reactionsController');
 
-const reactionsSchema = new mongoose.Schema({
-    //reactions schema
-});
+// POST a new reaction to a thought
+router.post('/:thoughtId', reactionsController.createReaction);
 
-const Reactions = mongoose.model('Reactions', reactionsSchema);
+// DELETE a reaction from a thought by its reactionId
+router.delete('/:thoughtId/:reactionId', reactionsController.deleteReaction);
 
-module.exports = Reactions;
+module.exports = router;
